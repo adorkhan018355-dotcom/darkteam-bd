@@ -34,7 +34,7 @@
 <input id="e" placeholder="Email Address" class="w-full p-2.5 mb-2 bg-black border border-cyan-900 rounded text-sm outline-none">
 <input id="p" type="password" placeholder="Password" class="w-full p-2.5 mb-3 bg-black border border-cyan-900 rounded text-sm outline-none">
 <button onclick="doReg()" class="w-full bg-[#b6ff6a] text-black font-bold py-2.5 rounded hover:bg-[#c6ff8a]">CREATE & LOGIN</button>
-  
+
 <button onclick="closeLogin()" class="w-full mt-3 text-[11px] border border-gray-700 py-1.5 rounded">CLOSE</button>
 </div></div>
 
@@ -59,7 +59,7 @@ const data=[
 ];
 let user=JSON.parse(localStorage.getItem('dtbd_u')||'null');
 function draw(filter='all'){let h='';data.forEach((x,i)=>{if(filter!=='all'&&x.c!==filter)return;h+=`<div class="neon bg-black/80 p-5 rounded-xl hover:bg-black transition"><div class="flex justify-between"><span class="text-cyan-300">🛡️</span><span class="text-[8px] border border-cyan-800 px-2 py-0.5 rounded-full">${x.c.toUpperCase()}</span></div><h3 class="orbit text-[#b6ff6a] text-[11px] mt-3 leading-tight">${x.t}</h3><p class="text-[10px] text-cyan-200/70 mt-2 h-8">${x.d}</p><button onclick="openT(${i})" class="mt-4 w-full text-[10px] border ${user?'border-[#b6ff6a] text-[#b6ff6a]':'border-cyan-700 text-cyan-400'} py-2 rounded-full">${user?'▶ OPEN LAB':'🔒 LOGIN TO USE'}</button></div>`});document.getElementById('grid').innerHTML=h;
-if(user){let isAdmin=user.e==='adorkhan@admindarkteam.com' && user.p==='#aDoR@9070';document.getElementById('authArea').innerHTML=`<div class="flex items...
+if(user){let isAdmin=user.e==='adorkhan@admindarkteam.com' && user.p==='#aDoR@9070';document.getElementById('authArea').innerHTML=`<div class="flex items-center gap-2"><span class="text-[11px] text-green-400">${user.n}</span>${isAdmin?`<button onclick="openAdmin()" class="text-[9px] bg-red-500/20 border border-red-400 px-2 py-1 rounded">ADMIN</button>`:''}<button onclick="logout()" class="text-[9px] border border-gray-600 px-2 py-1 rounded">Logout</button></div>`}}
 function openT(i){if(!user){openLogin();return}let x=data[i];document.getElementById('tTitle').innerText=x.t;document.getElementById('tGuide').innerHTML=x.g;document.getElementById('toolBox').classList.remove('hidden');let a=document.getElementById('tAnim');a.innerHTML='';let lines=[`> dtbd@cyber-lab:~$ initializing ${x.c} module`,`> loading ${x.t}...`,`> secure sandbox: ACTIVE`,`> educational mode: ON`,`> ✅ READY`];let j=0;let iv=setInterval(()=>{if(j<lines.length){a.innerHTML+=lines[j]+'<br>';j++}else clearInterval(iv)},350)}
 function openLogin(){document.getElementById('login').classList.remove('hidden')}function closeLogin(){document.getElementById('login').classList.add('hidden')}
 function doReg(){let n=document.getElementById('n').value,e=document.getElementById('e').value,p=document.getElementById('p').value;if(!e||!p||!n)return alert('Name, Email, Password sob daw');let u={n,e,p,t:new Date().toLocaleString()};localStorage.setItem('dtbd_u',JSON.stringify(u));let all=JSON.parse(localStorage.getItem('dtbd_users')||'[]');all.push(u);localStorage.setItem('dtbd_users',JSON.stringify(all));location.reload()}
