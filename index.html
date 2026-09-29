@@ -70,47 +70,32 @@ draw();
 <footer class="text-center text-[9px] text-gray-600 p-6 mt-6 border-t border-cyan-900/20">DARK TEAM BD — Ethical Hacking Education | Lab Safety: Isolated VM | No Malicious Use | DTBD v1.0 | Training Only</footer>
 </body>
 </html>
-<!-- ==== DARK TEAM BD - NEW SUB LAB SYSTEM - FINAL FIXED ==== -->
 <style>
 #subLab{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:99999;display:none;padding:15px;overflow-y:auto}
-.sub-card{width:100%;padding:10px;margin:5px 0;background:#061512;border:1px solid #00ff88;border-radius:12px;padding:12px;margin-bottom:10px}
-.sub-btn{width:100%;padding:10px;margin:5px 0;background:#00ff88;color:#000;font-weight:bold;border-radius:8px;border:none;cursor:pointer}
-.sub-btn2{width:100%;padding:8px;margin:4px 0;background:#000;color:#00ff88;border:1px solid #00ff88;border-radius:8px}
+.sub-card{background:#061512;border:1px solid #00ff88;border-radius:12px;padding:12px;margin-bottom:10px}
+.sub-btn{width:100%;padding:10px;background:#00ff88;color:#000;font-weight:bold;border-radius:8px;border:none}
 </style>
+
 <div id="subLab">
-<div style="display:flex;justify-content:space-between;align-items:center;">
-<h2 id="subTitle" style="color:#00ff88;font-weight:bold;"></h2>
-<button onclick="closeSub()" style="background:red;color:white;padding:5px 15px;border-radius:5px;">CLOSE X</button>
+<div style="display:flex;justify-content:space-between">
+<h2 id="subTitle" style="color:#00ff88;font-weight:bold"></h2>
+<button onclick="document.getElementById('subLab').style.display='none'" style="background:red;color:white;padding:5px 15px;border-radius:5px">CLOSE X</button>
 </div>
-<div id="subContent" style="margin-top:15px;"></div>
+<div id="subContent" style="margin-top:15px"></div>
 </div>
 
 <script>
-const subTools = {
-0: [
-{n:"WHOIS Lookup",f:()=>alert("WHOIS Demo - Educational")},
-{n:"IP Location Tracker [LIVE]",f:async()=>{let ip=prompt("Enter IP (empty for your IP):");let url=ip?`https://ipapi.co/${ip}/json/`:`https://ipapi.co/json/`;document.getElementById('tAnim').innerHTML="> Tracing IP...<br>> Satellite Connecting...";try{let r=await fetch(url);let d=await r.json();alert(`IP: ${d.ip}\nCity: ${d.city}\nCountry: ${d.country_name}\nISP: ${d.org}\nLat: ${d.latitude}`);document.getElementById('tAnim').innerHTML+=`<br>> Found: ${d.city} ✅`}catch(e){alert("Error!")}}},
-{n:"Username OSINT",f:()=>{let u=prompt("Username:");alert(u+" found on FB, Insta (Demo)");}}
-],
-1: [{n:"Port Scanner",f:()=>alert("Port 22,80,443 OPEN (Demo)")},{n:"Ping Tester",f:()=>{let h=prompt("Host:");alert("Ping to "+h+" Success")}}],
-2: [{n:"Payload Generator (Edu)",f:()=>alert("EICAR TEST - No real exploit")},{n:"Vuln Report Maker",f:()=>alert("Report Generated!")}],
-3: [{n:"Password Checker",f:()=>{let p=prompt("Pass:");alert(p.length>10?"Strong ✅":"Weak ❌")}},{n:"Password Generator",f:()=>alert("New Pass: "+Math.random().toString(36).slice(-10)+"@DTBD!")}],
-4: [{n:"2FA Setup Guide",f:()=>alert("FB > Settings > Password & Security > 2FA ON")},{n:"Phishing Detector",f:()=>{let l=prompt("Link:");alert(l.includes("facebook")?"Fake Link!":"Safe (Demo)")}}],
-5: [{n:"Gmail Checkup",f:()=>alert("Go to myaccount.google.com > Security")}],
-6: [{n:"Log Viewer",f:()=>alert("2 Attacks Blocked Today")}]
+const subTools={
+0:[{n:"WHOIS Lookup",f:()=>alert("WHOIS Demo OK")},{n:"IP Location Tracker [LIVE]",f:async()=>{let ip=prompt("Enter IP (empty for yours):");let url=ip?`https://ipapi.co/${ip}/json/`:`https://ipapi.co/json/`;try{let r=await fetch(url);let d=await r.json();alert("IP: "+d.ip+"\nCity: "+d.city+"\nCountry: "+d.country_name)}catch(e){alert("Error")}}},{n:"Username OSINT",f:()=>alert("Username Found (Demo)")}],1:[{n:"Port Scanner",f:()=>alert("Port 22,80,443 OPEN (Demo)")}],2:[{n:"Payload (Edu)",f:()=>alert("EICAR TEST - Safe")}],3:[{n:"Password Checker",f:()=>{let p=prompt("Password:");alert(p.length>8?"Strong":"Weak")}}],4:[{n:"2FA Guide",f:()=>alert("Settings > Security > 2FA ON")}],5:[{n:"Gmail Checkup",f:()=>alert("myaccount.google.com > Security")}],6:[{n:"Log Viewer",f:()=>alert("2 Attacks Blocked")}]
 };
-function openT(i){
- if(typeof user!=='undefined' && !user){openLogin();return;}
- let x=data[i];
- document.getElementById('toolBox').classList.remove('hidden');
- document.getElementById('tTit').innerText=x.t;
- document.getElementById('tGuide').innerText=x.d;
- document.getElementById('tAnim').innerHTML="> Initializing "+x.t+"...<br>> Bypassing Firewall...<br>> Access Granted ✅";
- let lab=subTools[i]; let html=`<p style="color:gray;font-size:12px;margin-bottom:10px;">${data[i].d}</p>`;
- lab.forEach((t,idx)=>{ html+=`<div class="sub-card"><button class="sub-btn" onclick="subTools[${i}][${idx}].f()">${t.n}</button></div>`; });
- html+=`<button class="sub-btn2" onclick="closeSub()">⬅ Back to Tools</button>`;
- document.getElementById('subContent').innerHTML=html;
- document.getElementById('subLab').style.display='block';
+window.openT=function(i){
+let x=data[i];
+let lab=subTools[i]||[{n:"Start Lab",f:()=>alert("Lab Started")}];
+let html="";
+lab.forEach((t,idx)=>{html+=`<div class="sub-card"><button class="sub-btn" onclick="subTools[${i}][${idx}].f()">${t.n}</button></div>`});
+document.getElementById('subTitle').innerText=x.t;
+document.getElementById('subContent').innerHTML=html;
+document.getElementById('subLab').style.display='block';
+document.getElementById('toolBox')?.classList.add('hidden');
 }
-function closeSub(){ document.getElementById('subLab').style.display='none'; }
 </script>
