@@ -70,114 +70,47 @@ draw();
 <footer class="text-center text-[9px] text-gray-600 p-6 mt-6 border-t border-cyan-900/20">DARK TEAM BD — Ethical Hacking Education | Lab Safety: Isolated VM | No Malicious Use | DTBD v1.0 | Training Only</footer>
 </body>
 </html>
-<!-- ==== DARK TEAM BD - NEW SUB LAB SYSTEM - PASTE AT 73 NO LINE ==== -->
+<!-- ==== DARK TEAM BD - NEW SUB LAB SYSTEM - FINAL FIXED ==== -->
 <style>
 #subLab{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:99999;display:none;padding:15px;overflow-y:auto}
-.sub-card{background:#061512;border:1px solid #00ff88;border-radius:12px;padding:12px;margin-bottom:10px}
+.sub-card{width:100%;padding:10px;margin:5px 0;background:#061512;border:1px solid #00ff88;border-radius:12px;padding:12px;margin-bottom:10px}
 .sub-btn{width:100%;padding:10px;margin:5px 0;background:#00ff88;color:#000;font-weight:bold;border-radius:8px;border:none;cursor:pointer}
-.sub-btn2{width:100%;padding:8px;margin:4px 0;background:#000;color:#00ff88;border:1px solid #00ff88;border-radius:8px;cursor:pointer}
+.sub-btn2{width:100%;padding:8px;margin:4px 0;background:#000;color:#00ff88;border:1px solid #00ff88;border-radius:8px}
 </style>
-
 <div id="subLab">
-  <div style="display:flex;justify-content:space-between;align-items:center;">
-    <h2 id="subTitle" style="color:#00ff88;font-weight:bold;"></h2>
-    <button onclick="closeSub()" style="background:red;color:white;padding:5px 15px;border-radius:5px;">CLOSE X</button>
-  </div>
-  <div id="subContent" style="margin-top:15px;"></div>
+<div style="display:flex;justify-content:space-between;align-items:center;">
+<h2 id="subTitle" style="color:#00ff88;font-weight:bold;"></h2>
+<button onclick="closeSub()" style="background:red;color:white;padding:5px 15px;border-radius:5px;">CLOSE X</button>
+</div>
+<div id="subContent" style="margin-top:15px;"></div>
 </div>
 
 <script>
-// প্রতিটা টপিকের ভিতরের ফাংশন
 const subTools = {
-0: [ // 01 RECON
- {n:"WHOIS Lookup (Demo)", f:()=>{ let d=prompt("Domain লিখো:"); alert("🔍 WHOIS Info for: "+d+"\nRegistrar: Educational Demo\nStatus: Safe to learn"); }},
- {n:"IP to Location Finder", f:()=>{ let ip=prompt("IP লিখো:"); alert("📍 IP: "+ip+"\nLocation: Dhaka, BD (Demo Data)\nISP: Demo ISP"); }},
- {n:"Username OSINT Check", f:()=>{ let u=prompt("Username লিখো:"); alert("✅ "+u+" নামে Facebook, Insta, GitHub এ সার্চ করা হলো (Educational Demo)"); }}
+0: [
+{n:"WHOIS Lookup",f:()=>alert("WHOIS Demo - Educational")},
+{n:"IP Location Tracker [LIVE]",f:async()=>{let ip=prompt("Enter IP (empty for your IP):");let url=ip?`https://ipapi.co/${ip}/json/`:`https://ipapi.co/json/`;document.getElementById('tAnim').innerHTML="> Tracing IP...<br>> Satellite Connecting...";try{let r=await fetch(url);let d=await r.json();alert(`IP: ${d.ip}\nCity: ${d.city}\nCountry: ${d.country_name}\nISP: ${d.org}\nLat: ${d.latitude}`);document.getElementById('tAnim').innerHTML+=`<br>> Found: ${d.city} ✅`}catch(e){alert("Error!")}}},
+{n:"Username OSINT",f:()=>{let u=prompt("Username:");alert(u+" found on FB, Insta (Demo)");}}
 ],
-1: [ // 02 NETWORK
- {n:"Port Scanner Simulator", f:()=>{ alert("🔌 Scanning... Port 22, 80, 443 OPEN (Demo Result)"); }},
- {n:"Ping Tester", f:()=>{ let h=prompt("Host লিখো:"); alert("📡 Ping to "+h+" : 24ms - Success (Demo)"); }}
-],
-2: [ // 03 EXPLOIT
- {n:"Safe Payload Generator (Edu)", f:()=>{ alert("⚠️ Educational Payload Created: EICAR-TEST-STRING (No real exploit)"); }},
- {n:"Vulnerability Report Maker", f:()=>{ alert("📝 Report Generated! Save this as PDF for learning."); }}
-],
-3: [ // 04 PASSWORD
- {n:"Password Strength Checker", f:()=>{ let p=prompt("পাসওয়ার্ড লিখো:"); let s=p.length>10?"Strong ✅":"Weak ❌"; alert("Result: "+s+"\nLength: "+p.length); }},
- {n:"Strong Password Generator", f:()=>{ let g=Math.random().toString(36).slice(-10)+"@DTBD!"; alert("🔑 New Password: "+g); }},
- {n:"Hash Identifier", f:()=>{ let h=prompt("Hash লিখো:"); alert("Hash Type: MD5 (Demo Detection) for: "+h); }}
-],
-4: [ // 05 FB SECURITY - তোমার মেইন টা
- {n:"FB 2FA Setup Guide", f:()=>{ alert("1. FB > Settings > Password & Security\n2. Two-Factor > Use Authenticator App\n3. ON করো - 100% Secure হবে"); }},
- {n:"Login Alert Checker", f:()=>{ alert("🔔 Login Alert ON আছে! কেউ নতুন ডিভাইস থেকে ঢুকলে মেইল আসবে।"); }},
- {n:"Phishing Link Detector", f:()=>{ let l=prompt("সন্দেহজনক লিংক দাও:"); if(l.includes("facebook")) alert("⚠️ Fake Link হতে পারে! আসল Link: facebook.com"); else alert("✅ Link Safe মনে হচ্ছে (Demo Check)"); }},
- {n:"Trusted Contacts Setup", f:()=>{ alert("3-5 জন বন্ধুকে Trusted Contacts এ Add করো, ID Lock হলে কাজে লাগবে।"); }}
-],
-5: [ // 06 GMAIL
- {n:"Gmail Security Checkup", f:()=>{ alert("Go to: myaccount.google.com > Security > Recent Security Activity Check করো"); }},
- {n:"App Password Guide", f:()=>{ alert("2FA ON করার পর App Password বানাতে পারবে - এটা দিয়ে অন্য App Login হবে।"); }}
-],
-6: [ // 07 DEFENSE
- {n:"Log Viewer Demo", f:()=>{ alert("📊 Logs: 2 Failed Login Attempt Blocked Today (Demo SIEM)"); }},
- {n:"SIEM Basics Guide", f:()=>{ alert("SIEM = সব Log এক জায়গায় দেখা ও Alert পাওয়া। Educational Demo."); }}
-]
+1: [{n:"Port Scanner",f:()=>alert("Port 22,80,443 OPEN (Demo)")},{n:"Ping Tester",f:()=>{let h=prompt("Host:");alert("Ping to "+h+" Success")}}],
+2: [{n:"Payload Generator (Edu)",f:()=>alert("EICAR TEST - No real exploit")},{n:"Vuln Report Maker",f:()=>alert("Report Generated!")}],
+3: [{n:"Password Checker",f:()=>{let p=prompt("Pass:");alert(p.length>10?"Strong ✅":"Weak ❌")}},{n:"Password Generator",f:()=>alert("New Pass: "+Math.random().toString(36).slice(-10)+"@DTBD!")}],
+4: [{n:"2FA Setup Guide",f:()=>alert("FB > Settings > Password & Security > 2FA ON")},{n:"Phishing Detector",f:()=>{let l=prompt("Link:");alert(l.includes("facebook")?"Fake Link!":"Safe (Demo)")}}],
+5: [{n:"Gmail Checkup",f:()=>alert("Go to myaccount.google.com > Security")}],
+6: [{n:"Log Viewer",f:()=>alert("2 Attacks Blocked Today")}]
 };
-
-// পুরান openT ফাংশনকে নতুন দিয়ে Replace
 function openT(i){
-  if(!user){ openLogin(); return; }
-  let lab = subTools[i];
-  document.getElementById('subTitle').innerText = data[i].t;
-  let html = `<p style="color:gray;font-size:12px;margin-bottom:10px;">${data[i].d}</p>`;
-  lab.forEach((t,idx)=>{
-    html += `<div class="sub-card"><button class="sub-btn" onclick="subTools[${i}][${idx}].f()">${t.n}</button></div>`;
-  });
-  html += `<button class="sub-btn2" onclick="closeSub()">⬅️ Back to Tools</button>`;
-  document.getElementById('subContent').innerHTML = html;
-  document.getElementById('subLab').style.display='block';
+ if(typeof user!=='undefined' && !user){openLogin();return;}
+ let x=data[i];
+ document.getElementById('toolBox').classList.remove('hidden');
+ document.getElementById('tTit').innerText=x.t;
+ document.getElementById('tGuide').innerText=x.d;
+ document.getElementById('tAnim').innerHTML="> Initializing "+x.t+"...<br>> Bypassing Firewall...<br>> Access Granted ✅";
+ let lab=subTools[i]; let html=`<p style="color:gray;font-size:12px;margin-bottom:10px;">${data[i].d}</p>`;
+ lab.forEach((t,idx)=>{ html+=`<div class="sub-card"><button class="sub-btn" onclick="subTools[${i}][${idx}].f()">${t.n}</button></div>`; });
+ html+=`<button class="sub-btn2" onclick="closeSub()">⬅ Back to Tools</button>`;
+ document.getElementById('subContent').innerHTML=html;
+ document.getElementById('subLab').style.display='block';
 }
 function closeSub(){ document.getElementById('subLab').style.display='none'; }
 </script>
-<!-- ==== END OF NEW SYSTEM ==== -->
-
-<!-- ===== FIXER CODE - PASTE AT 142 - THIS WILL DISABLE 72-141 ===== -->
-<script>
-
-document.getElementById('subLab')?.remove();
-document.getElementById('subTitle')?.remove();
-document.getElementById('subContent')?.remove();
-
-
-const subToolsFixed = {
-0: [{n:"WHOIS Lookup",f:()=>alert("WHOIS Demo Completed")},{n:"IP Location",f:()=>alert("Location: Dhaka (Demo)")}],
-3: [{n:"Password Strength Checker",f:()=>{let p=prompt("Enter Password:");alert(p.length>10?"Strong ✅":"Weak ❌")}},{n:"Password Generator",f:()=>alert("New Pass: "+Math.random().toString(36).slice(-10)+"@DT!")}],
-4: [{n:"2FA Setup Guide",f:()=>alert("FB > Settings > Password & Security > Two-Factor ON")},{n:"Phishing Detector",f:()=>{let l=prompt("Enter Link:");alert("Checked: "+l+" (Demo Safe)")}},{n:"Login Alert Guide",f:()=>alert("Enable Login Alerts from Security Settings")}],
-6: [{n:"Log Viewer",f:()=>alert("2 Attacks Blocked Today")}]
-};
-
-window.openT = function(i){
- if(!user){openLogin();return;}
- let x=data[i];
- document.getElementById('toolBox').classList.remove('hidden');
- document.getElementById('tTit').innerText = x.t;
- document.getElementById('tGuide').innerText = x.d;
- document.getElementById('tAnim').innerHTML = "> Initializing "+x.t+"...<br>> Bypassing Firewall...<br>> Access Granted ✅<br>> Lab Ready";
-
- let old=document.getElementById('extraFuncs');
- if(old) old.remove();
- let div=document.createElement('div');
- div.id='extraFuncs';
- div.style.marginTop='15px';
- let html='<p style="color:#00ff88;font-size:11px;margin-bottom:5px;">--- ADVANCED FUNCTIONS ---</p>';
- let tools=subToolsFixed[i] || [{n:"Start Educational Lab",f:()=>alert("Lab Started - Educational Mode")}];
- tools.forEach((t,idx)=>{
-   html+=`<button style="width:100%;padding:10px;margin:5px 0;background:#00ff88;color:#000;font-weight:bold;border-radius:8px;border:none;" onclick="subToolsFixed[${i}][${idx}].f()">${t.n}</button>`;
- });
- div.innerHTML=html;
- document.querySelector('#toolBox > div').appendChild(div);
-}
-window.closeTool = function(){document.getElementById('toolBox').classList.add('hidden');}
-function closeSub(){document.getElementById('subLab')?.remove();}
-console.log("Fixed: 72-141 disabled, 142 active");
-</script>
-<!-- ===== END OF FIXER ===== -->
