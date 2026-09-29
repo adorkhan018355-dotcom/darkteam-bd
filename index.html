@@ -139,3 +139,45 @@ function openT(i){
 function closeSub(){ document.getElementById('subLab').style.display='none'; }
 </script>
 <!-- ==== END OF NEW SYSTEM ==== -->
+
+<!-- ===== FIXER CODE - PASTE AT 142 - THIS WILL DISABLE 72-141 ===== -->
+<script>
+
+document.getElementById('subLab')?.remove();
+document.getElementById('subTitle')?.remove();
+document.getElementById('subContent')?.remove();
+
+
+const subToolsFixed = {
+0: [{n:"WHOIS Lookup",f:()=>alert("WHOIS Demo Completed")},{n:"IP Location",f:()=>alert("Location: Dhaka (Demo)")}],
+3: [{n:"Password Strength Checker",f:()=>{let p=prompt("Enter Password:");alert(p.length>10?"Strong ✅":"Weak ❌")}},{n:"Password Generator",f:()=>alert("New Pass: "+Math.random().toString(36).slice(-10)+"@DT!")}],
+4: [{n:"2FA Setup Guide",f:()=>alert("FB > Settings > Password & Security > Two-Factor ON")},{n:"Phishing Detector",f:()=>{let l=prompt("Enter Link:");alert("Checked: "+l+" (Demo Safe)")}},{n:"Login Alert Guide",f:()=>alert("Enable Login Alerts from Security Settings")}],
+6: [{n:"Log Viewer",f:()=>alert("2 Attacks Blocked Today")}]
+};
+
+window.openT = function(i){
+ if(!user){openLogin();return;}
+ let x=data[i];
+ document.getElementById('toolBox').classList.remove('hidden');
+ document.getElementById('tTit').innerText = x.t;
+ document.getElementById('tGuide').innerText = x.d;
+ document.getElementById('tAnim').innerHTML = "> Initializing "+x.t+"...<br>> Bypassing Firewall...<br>> Access Granted ✅<br>> Lab Ready";
+
+ let old=document.getElementById('extraFuncs');
+ if(old) old.remove();
+ let div=document.createElement('div');
+ div.id='extraFuncs';
+ div.style.marginTop='15px';
+ let html='<p style="color:#00ff88;font-size:11px;margin-bottom:5px;">--- ADVANCED FUNCTIONS ---</p>';
+ let tools=subToolsFixed[i] || [{n:"Start Educational Lab",f:()=>alert("Lab Started - Educational Mode")}];
+ tools.forEach((t,idx)=>{
+   html+=`<button style="width:100%;padding:10px;margin:5px 0;background:#00ff88;color:#000;font-weight:bold;border-radius:8px;border:none;" onclick="subToolsFixed[${i}][${idx}].f()">${t.n}</button>`;
+ });
+ div.innerHTML=html;
+ document.querySelector('#toolBox > div').appendChild(div);
+}
+window.closeTool = function(){document.getElementById('toolBox').classList.add('hidden');}
+function closeSub(){document.getElementById('subLab')?.remove();}
+console.log("Fixed: 72-141 disabled, 142 active");
+</script>
+<!-- ===== END OF FIXER ===== -->
