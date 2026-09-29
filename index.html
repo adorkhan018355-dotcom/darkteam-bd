@@ -1,114 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DARK HACKING GUIDELINE</title>
-<style>
-body{margin:0;background:#050505;color:#00ff41;font-family:monospace}
-.header{text-align:center;padding:40px 20px;border-bottom:2px solid #00ff41;box-shadow:0 0 20px #00ff41}
-.header h1{font-size:32px;letter-spacing:3px;margin:0}
-.header p{color:#888;margin-top:10px}
-.container{max-width:1000px;margin:30px auto;padding:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{border:1px solid #00ff41;padding:25px;background:#0a0a0a;text-align:center;transition:0.3s}
-.card:hover{box-shadow:0 0 15px #00ff41;transform:scale(1.03)}
-.card h3{margin:10px 0}
-.card a{display:inline-block;margin-top:15px;padding:8px 20px;border:1px solid #00ff41;color:#00ff41;text-decoration:none}
-.footer{text-align:center;margin-top:60px;padding:30px;border-top:1px solid #222;color:#666}
-.footer b{color:#00ff41}
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARK TEAM BD CYBER LAB</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>body{font-family:'JetBrains Mono',monospace;background:#020d0b}.orbit{font-family:'Orbitron',sans-serif}.neon{border:1px solid #00ffc6;box-shadow:0 0 15px #00ffc655,inset 0 0 10px #00ffc622}</style>
 </head>
-<body>
-
-<div class="header">
-<h1>DARK HACKING GUIDELINE</h1>
-<p>Educational Cyber Security Tools & Guidelines</p>
+<body class="text-white min-h-screen">
+<!-- HEADER WITH EMBEDDED LOGO -->
+<header class="flex justify-between items-center p-3 bg-black/90 neon m-3 rounded-xl">
+<div class="flex gap-3 items-center">
+<!-- EMBEDDED LOGO - NO UPLOAD NEEDED -->
+<div class="w-11 h-11 neon rounded-full bg-black flex items-center justify-center overflow-hidden">
+<svg viewBox="0 0 100 100" class="w-full h-full p-1"><path d="M50 5 L90 20 L90 60 C90 85 50 98 50 98 C50 98 10 85 10 60 L10 20 Z" fill="none" stroke="#00ffc6" stroke-width="3"/><text x="50" y="35" text-anchor="middle" fill="#00ffc6" font-size="12" font-weight="900" font-family="Orbitron">DTBD</text><text x="50" y="55" text-anchor="middle" fill="#aaff55" font-size="20">🛡️</text><text x="50" y="75" text-anchor="middle" fill="#00ffc6" font-size="6">DARK TEAM BD</text></svg>
 </div>
-
-<div class="container">
-<div class="grid">
-
-<!-- এখান থেকে তুমি নতুন টুল Add করবে জান -->
-<div class="card">
-<h3>01. ETHICAL HACKING</h3>
-<p>What is Ethical Hacking? Full Basic to Advanced Guide</p>
-<a href="#">READ GUIDE</a>
+<div><h1 class="orbit text-[#b6ff6a] text-[14px] md:text-lg leading-none">DARK TEAM BD CYBER LAB</h1><p class="text-[8px] text-cyan-300 tracking-widest">EDUCATIONAL CYBERSECURITY LAB</p></div>
 </div>
+<div id="authArea"><button onclick="openLogin()" class="text-[11px] px-4 py-2 bg-cyan-900/40 border border-cyan-400 rounded-full">LOGIN / REGISTER</button></div>
+</header>
 
-<div class="card">
-<h3>02. PASSWORD SECURITY</h3>
-<p>How to Create & Check Strong Password - Stay Safe</p>
-<a href="#">READ GUIDE</a>
-</div>
+<!-- TITLE -->
+<div class="text-center mt-2"><div class="inline-block neon bg-black/70 px-8 py-2 rounded-xl"><h2 class="orbit text-[#b6ff6a] text-sm">TOOL LIBRARY</h2><p class="text-cyan-300 text-[10px]">7 MODULES • SECURE • ETHICAL • TRAINING</p></div></div>
 
-<div class="card">
-<h3>03. PHISHING AWARENESS</h3>
-<p>How to Identify Fake Links & Protect Your ID</p>
-<a href="#">READ GUIDE</a>
-</div>
+<!-- GRID -->
+<div id="grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 max-w-6xl mx-auto mt-4"></div>
 
-<div class="card">
-<h3>04. SOCIAL ENGINEERING</h3>
-<p>How Hackers Manipulate People - Protection Guide</p>
-<a href="#">READ GUIDE</a>
-</div>
+<!-- LOGIN MODAL -->
+<div id="login" class="hidden fixed inset-0 bg-black/85 z-[99] flex items-center justify-center p-4">
+<div class="bg-[#071a16] neon p-6 rounded-xl w-full max-w-sm">
+<h2 class="orbit text-[#b6ff6a] mb-4 text-sm">CREATE ACCOUNT TO USE TOOLS</h2>
+<input id="n" placeholder="Your Name" class="w-full p-2.5 mb-2 bg-black border border-cyan-900 rounded text-sm outline-none">
+<input id="e" placeholder="Email Address" class="w-full p-2.5 mb-2 bg-black border border-cyan-900 rounded text-sm outline-none">
+<input id="p" type="password" placeholder="Password" class="w-full p-2.5 mb-3 bg-black border border-cyan-900 rounded text-sm outline-none">
+<button onclick="doReg()" class="w-full bg-[#b6ff6a] text-black font-bold py-2.5 rounded hover:bg-[#c6ff8a]">CREATE & LOGIN</button>
+<p class="text-[9px] mt-3 text-gray-500 text-center">Admin Login: admin@darkteambd.com / admin123</p>
+<button onclick="closeLogin()" class="w-full mt-3 text-[11px] border border-gray-700 py-1.5 rounded">CLOSE</button>
+</div></div>
 
-<div class="card">
-<h3>05. FOOTPRINTING</h3>
-<p>What is Footprinting? How to Secure Your Info Online</p>
-<a href="#">READ GUIDE</a>
-</div>
+<!-- TOOL MODAL -->
+<div id="toolBox" class="hidden fixed inset-0 bg-black/90 z-[99] flex items-center justify-center p-4">
+<div class="bg-[#061512] neon p-4 rounded-xl max-w-xl w-full max-h-[90vh] overflow-auto">
+<div class="flex justify-between items-start"><h3 id="tTitle" class="orbit text-[#b6ff6a] text-xs"></h3><button onclick="document.getElementById('toolBox').classList.add('hidden')" class="text-red-400 px-2">✕</button></div>
+<div id="tAnim" class="bg-black mt-3 p-3 h-28 text-[11px] text-green-400 rounded border border-green-900/50 font-mono overflow-hidden"></div>
+<div id="tGuide" class="mt-3 text-[12px] text-gray-200 leading-6 bg-black/50 p-3 rounded border border-cyan-900/30"></div>
+<button class="mt-4 w-full py-2 bg-cyan-500/10 border border-cyan-400 rounded text-xs">START LAB (Educational Sandbox)</button>
+</div></div>
 
-<div class="card">
-<h3>06. IP & NETWORK BASIC</h3>
-<p>Learn What is IP, VPN, DNS - For Beginners</p>
-<a href="#">READ GUIDE</a>
-</div>
-
-<div class="card">
-<h3>07. TERMUX GUIDE</h3>
-<p>Termux Basic Commands for Ethical Hacking Lab</p>
-<a href="#">READ GUIDE</a>
-</div>
-
-<div class="card">
-<h3>08. CYBER SECURITY TIPS</h3>
-<p>Top 10 Tips to Protect Facebook & Gmail</p>
-<a href="#">READ GUIDE</a>
-</div>
-
-<div class="card">
-<h3>09. DARK WEB AWARENESS</h3>
-<p>What is Dark Web? How to Stay Safe From It</p>
-<a href="#">READ GUIDE</a>
-</div>
-<div class="card">
-<h3>TOOL 01</h3>
-<p>Coming Soon</p>
-<a href="#">OPEN</a>
-</div>
-
-<div class="card">
-<h3>TOOL 02</h3>
-<p>Coming Soon</p>
-<a href="#">OPEN</a>
-</div>
-
-<div class="card">
-<h3>TOOL 03</h3>
-<p>Coming Soon</p>
-<a href="#">OPEN</a>
-</div>
-
-</div>
-</div>
-
-<div class="footer">
-<p>Contact: darkteambd@gmail.com</p>
-<p><b>Powered by DARK TEAM</b></p>
-<p>© 2026 DARK HACKING GUIDELINE - All Rights Reserved</p>
-</div>
-
+<script>
+const data=[
+{t:'01. RECON & OSINT',d:'Open-source intelligence • WHOIS • Subdomain scanning • Social footprint',c:'ethical',g:'<b class="text-[#b6ff6a]">✅ 100% REAL GUIDELINE:</b><br>• who.is, shodan.io, hunter.io use koro<br>• sudhu public info collect koro<br>• nijer domain e test koro, onner ta te permission chara na<br>• Tools: theHarvester, Sublist3r (Termux)'},
+{t:'02. NETWORK SCANNING',d:'Port scanning • Vulnerability assess • Service discovery • Nmap toolkit',c:'termux',g:'<b class="text-[#b6ff6a]">✅ TERMUX REAL COMMAND:</b><br>pkg update && pkg install nmap<br>nmap -sV -A 127.0.0.1<br>• Shudhu nijer network e use koro<br>• TryHackMe e practice koro'},
+{t:'03. EXPLOITATION LAB',d:'Safe exploit training • Payload analysis • Vulnerability demo • Isolated env',c:'ethical',g:'<b class="text-[#b6ff6a]">✅ SAFE LAB:</b><br>• TryHackMe / HackTheBox e account khulo<br>• VMWare / VirtualBox e vulnerable machine (Metasploitable) setup koro<br>• Payload: msfvenom use shikho ethical lab e'},
+{t:'04. PASSWORD & HASH CRACKING',d:'Hash cracking labs • Password strength • Dictionary & bruteforce • Best practices',c:'ethical',g:'<b class="text-[#b6ff6a]">✅ SECURITY GUIDE:</b><br>• Password 12+ character, 2FA on rakho<br>• Hashcat: hashcat -m 0 hash.txt wordlist.txt<br>• Nijer hash diye practice koro'},
+{t:'05. FACEBOOK SECURITY LAB',d:'ID secure • 2FA • Phishing check • Recovery',c:'facebook',g:'<b class="text-[#b6ff6a]">✅ FB REAL SECURITY:</b><br>1. Facebook > Settings > Password & Security > Two-Factor ON<br>2. Login Alerts ON<br>3. facebook.com chara onno link e login korbe na<br>4. Trusted contacts add koro'},
+{t:'06. GMAIL SECURITY LAB',d:'Encryption/Decryption • App password • 2-Step verification',c:'gmail',g:'<b class="text-[#b6ff6a]">✅ GMAIL GUIDE:</b><br>myaccount.google.com > Security > 2-Step ON<br>• App Password create koro<br>• Unknown device remove koro<br>• Phishing mail report koro'},
+{t:'07. DEFENSE & MONITORING',d:'SIEM basics • Log monitoring • IDS/IPS • Threat response • Termux',c:'number',g:'<b class="text-[#b6ff6a]">✅ DEFENSE LAB:</b><br>• Wazuh, Suricata SIEM shikho<br>• Termux e: pkg install python, log analysis<br>• Blue team skills develop koro'},
+];
+let user=JSON.parse(localStorage.getItem('dtbd_u')||'null');
+function draw(filter='all'){let h='';data.forEach((x,i)=>{if(filter!=='all'&&x.c!==filter)return;h+=`<div class="neon bg-black/80 p-5 rounded-xl hover:bg-black transition"><div class="flex justify-between"><span class="text-cyan-300">🛡️</span><span class="text-[8px] border border-cyan-800 px-2 py-0.5 rounded-full">${x.c.toUpperCase()}</span></div><h3 class="orbit text-[#b6ff6a] text-[11px] mt-3 leading-tight">${x.t}</h3><p class="text-[10px] text-cyan-200/70 mt-2 h-8">${x.d}</p><button onclick="openT(${i})" class="mt-4 w-full text-[10px] border ${user?'border-[#b6ff6a] text-[#b6ff6a]':'border-cyan-700 text-cyan-400'} py-2 rounded-full">${user?'▶ OPEN LAB':'🔒 LOGIN TO USE'}</button></div>`});document.getElementById('grid').innerHTML=h;
+if(user){let isAdmin=user.e==='admin@darkteambd.com';document.getElementById('authArea').innerHTML=`<div class="flex items-center gap-2"><span class="text-[11px] text-green-400">${user.n}</span>${isAdmin?`<button onclick="openAdmin()" class="text-[9px] bg-red-500/20 border border-red-400 px-2 py-1 rounded">ADMIN</button>`:''}<button onclick="logout()" class="text-[9px] border border-gray-600 px-2 py-1 rounded">Logout</button></div>`}}
+function openT(i){if(!user){openLogin();return}let x=data[i];document.getElementById('tTitle').innerText=x.t;document.getElementById('tGuide').innerHTML=x.g;document.getElementById('toolBox').classList.remove('hidden');let a=document.getElementById('tAnim');a.innerHTML='';let lines=[`> dtbd@cyber-lab:~$ initializing ${x.c} module`,`> loading ${x.t}...`,`> secure sandbox: ACTIVE`,`> educational mode: ON`,`> ✅ READY`];let j=0;let iv=setInterval(()=>{if(j<lines.length){a.innerHTML+=lines[j]+'<br>';j++}else clearInterval(iv)},350)}
+function openLogin(){document.getElementById('login').classList.remove('hidden')}function closeLogin(){document.getElementById('login').classList.add('hidden')}
+function doReg(){let n=document.getElementById('n').value,e=document.getElementById('e').value,p=document.getElementById('p').value;if(!e||!p||!n)return alert('Name, Email, Password sob daw');let u={n,e,p,t:new Date().toLocaleString()};localStorage.setItem('dtbd_u',JSON.stringify(u));let all=JSON.parse(localStorage.getItem('dtbd_users')||'[]');all.push(u);localStorage.setItem('dtbd_users',JSON.stringify(all));location.reload()}
+function logout(){localStorage.removeItem('dtbd_u');location.reload()}
+function openAdmin(){let all=JSON.parse(localStorage.getItem('dtbd_users')||'[]');let list=all.map((u,i)=>`${i+1}. ${u.n} | ${u.e} | ${u.t}`).join('<br>');document.getElementById('tTitle').innerText='ADMIN PANEL - Total Users: '+all.length;document.getElementById('tGuide').innerHTML=list||'No users yet';document.getElementById('tAnim').innerHTML='> admin@dtbd:~# access granted<br>> listing users...';document.getElementById('toolBox').classList.remove('hidden')}
+draw();
+</script>
+<footer class="text-center text-[9px] text-gray-600 p-6 mt-6 border-t border-cyan-900/20">DARK TEAM BD — Ethical Hacking Education | Lab Safety: Isolated VM | No Malicious Use | DTBD v1.0 | Training Only</footer>
 </body>
 </html>
